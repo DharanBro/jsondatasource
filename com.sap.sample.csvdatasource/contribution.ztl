@@ -1,0 +1,3 @@
+class com.sap.sample.jsondatasource.JsonDataSource extends SdkDataBuffer {
+	// needed to inherit parent class methods	
+}

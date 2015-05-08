@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	xmlns="http://www.sap.com/bi/zen/sdk"
+	id="com.sap.sample.jsondatasource"
+	title="Design Studio SDK Extension Sample CSV Data Source"
+	version="14.2"
+	vendor="SAP">
+	<component
+		id="JsonDataSource"
+		title="JSON Data Source"
+		tooltip="Allows access to data from a CSV file stored in the application folder"
+		icon="res/icon.png"
+		handlerType="datasource">
+		<jsInclude>res/js/component.js</jsInclude>
+		<property
+			id="csvfile"
+			title="CSV File"
+			type="Url"/>
+		<property
+			id="hasHeaderRow"
+			title="Has Header Row"
+			type="boolean"/>
+		<property
+			id="hasHeaderColumn"
+			title="Has Header Column"
+			type="boolean"/>
+	</component>
+</sdkExtension>
+
+
+
