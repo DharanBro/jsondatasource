@@ -9,12 +9,12 @@ sap.designstudio.sdk.DataBuffer.subclass("com.sap.sample.jsondatasource.JsonData
 	this.init = function() {
 		this.defineDimensions([{
 			key: "cols",
-			text: "Columns",
+			text: "City",
 			"axis": "COLUMNS",
 			"axis_index": 0
 		}, {
 			key: "rows",
-			text: "Rows",
+			text: "Date",
 			"axis": "ROWS",
 			"axis_index": 0
 		}], {
@@ -23,7 +23,7 @@ sap.designstudio.sdk.DataBuffer.subclass("com.sap.sample.jsondatasource.JsonData
 			containsMeasures: true,
 			members: [{
 				"key": "measure",
-				"text": "Measure",
+				"text": "Temprature",
 				"scalingFactor": 2,
 				"formatString": "0.00 EUR;-0.00 EUR"
 			}]
@@ -56,30 +56,34 @@ sap.designstudio.sdk.DataBuffer.subclass("com.sap.sample.jsondatasource.JsonData
 			return this;
 		}
 	};
+	
+	
 
 	this.afterUpdate = function() {
 		$.ajax({
 			async: false,
 			url: _csvfile,
 		}).done(function(csvText) {
+			alert(csvText);
 			processCsvText(csvText);
 		});
 	};
 
 	function processCsvText(csvText) {
-		var result = [];
-		var csvTextLines = csvText.split(/\r\n|\n/);
-		var separator = ",";
-		if ((csvTextLines.length > 0) && (csvTextLines[0].indexOf(";") != -1)) {
-			separator = ";";
-		}
-		for (var i = 0; i < csvTextLines.length; i++) {
-			var row = csvTextLines[i].split(separator);
-			if (row.length > 0) {
-				result.push(row);
-			}
-		}
-		that.fillWithArray(result, that.hasHeaderRow(), that.hasHeaderColumn());
+		var city = [];
+		var day=[];
+        
+		   city[0]=["","Londen","kiev","Moscow","Morins"];
+	       day[0]=["01-12-2014"];
+	       
+	        for(var i=0;i<csvText.list.length;i++){
+	          day[i+1]=parseInt((csvText.list[i].main.temp));
+	        }
+	        
+		  city[1]=day;
+		
+         alert(city);
+		that.fillWithArray(city, that.hasHeaderRow(), that.hasHeaderColumn());
 		that.fireUpdate(true);
 	}
 });
