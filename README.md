@@ -3,3 +3,5 @@
 For quick prototype
 
 GithubAPI
+
+simple-git
